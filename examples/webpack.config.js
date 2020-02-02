@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = (env, argv) => {
   return {
     entry: path.resolve(__dirname, 'index.js'),
+    devtool: 'source-map',
     output: { filename: 'bundle.js' },
     module: {
       rules: [

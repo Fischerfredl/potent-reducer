@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { Counter } from './components/Counter'
 import { TodoExample } from './components/Todo'
+import { DevToolExample } from './components/DevTools'
 
 const App = () => {
   return (
@@ -12,6 +13,8 @@ const App = () => {
       <Counter />
       <h2>Todo List</h2>
       <TodoExample />
+      <h2>DevTools Example</h2>
+      <DevToolExample />
     </div>
   )
 }
