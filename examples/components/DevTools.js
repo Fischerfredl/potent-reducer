@@ -22,11 +22,12 @@ const devToolStore = devTool && devTool(reducerFn, initialState)
 export const DevToolExample = () => {
   return (
     <ReduxProvider Provider={Provider} store={devToolStore}>
+      <Counter />
+      <br />
       <div>
         This Counter is connected to ReduxDevTools if it is installed in your
         Browser.
       </div>
-      <Counter />
     </ReduxProvider>
   )
 }
@@ -35,10 +36,10 @@ const Counter = () => {
   const { count } = useSelector()
   const { increment, decrement } = useDispatch()
   return (
-    <>
+    <div>
       <button onClick={decrement}>-</button>
       <button onClick={increment}>+</button>
       Count: {count}
-    </>
+    </div>
   )
 }

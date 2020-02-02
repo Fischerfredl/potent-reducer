@@ -52,6 +52,8 @@ export const TodoExample = () => {
       <AddItem />
       <UndoneList />
       <DoneList />
+      <br />
+      This example uses the logging flag to enable debugging in the console.
     </Provider>
   )
 }

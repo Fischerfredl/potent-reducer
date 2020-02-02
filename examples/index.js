@@ -11,8 +11,10 @@ const App = () => {
       <h1>Examples</h1>
       <h2>Counter</h2>
       <Counter />
+      <hr />
       <h2>Todo List</h2>
       <TodoExample />
+      <hr />
       <h2>DevTools Example</h2>
       <DevToolExample />
     </div>
