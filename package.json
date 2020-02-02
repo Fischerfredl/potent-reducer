@@ -1,0 +1,50 @@
+{
+  "name": "potent-reducer",
+  "version": "0.1.0",
+  "description": "A react hook based on useReducer and context.",
+  "main": "src/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "webpack --mode production",
+    "lint": "eslint src",
+    "format": "prettier --write src/**/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fischerfredl/potent-reducer.git"
+  },
+  "keywords": [
+    "react",
+    "reducer",
+    "useReducer",
+    "state",
+    "redux",
+    "context"
+  ],
+  "author": "Alfred Melch <dev@melch.pro>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fischerfredl/potent-reducer/issues"
+  },
+  "homepage": "https://github.com/Fischerfredl/potent-reducer#readme",
+  "peerDependencies": {
+    "react": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.2",
+    "webpackbar": "^4.0.0"
+  }
+}
