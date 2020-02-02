@@ -84,7 +84,9 @@ export const createStore = initialOptions => {
   }
   const useStore = () => useContext(context)
   const useSelector = selector => {
-    const val = selector(useContext(context)[0])
+    const [state] = useContext(context)
+    if (typeof selector === 'undefined') return state
+    const val = selector(state)
     initialOptions.warnOnUndefinedSelect && assertSelectedExists(val)
     return val
   }
