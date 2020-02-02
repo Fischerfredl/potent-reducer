@@ -11,12 +11,10 @@ const reducer = {
 export const Counter = () => {
   const [state, actions] = usePotentReducer({ initialState, thunks, reducer })
   return (
-    <div>
-      <div>Count is: {state.count}</div>
-      <div>
-        <button onClick={actions.increment}>+</button>
-        <button onClick={actions.decrement}>-</button>
-      </div>
-    </div>
+    <>
+      <button onClick={actions.decrement}>-</button>
+      <button onClick={actions.increment}>+</button>
+      Count: {state.count}
+    </>
   )
 }
