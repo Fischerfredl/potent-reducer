@@ -39,10 +39,11 @@ const reducer = {
   })
 }
 
-const { Provider, useSelector, useDispatch, useStore } = createStore({
+const { Provider, useSelector, useDispatch } = createStore({
   initialState,
   reducer,
-  thunks
+  thunks,
+  logging: true
 })
 
 export const TodoExample = () => {
