@@ -14,7 +14,7 @@ export const Counter = () => {
     <>
       <button onClick={actions.decrement}>-</button>
       <button onClick={actions.increment}>+</button>
-      Count: {state.count}
+      <span>Count: {state.count}</span>
     </>
   )
 }
