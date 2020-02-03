@@ -1,6 +1,6 @@
 {
   "name": "potent-reducer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A react hook based on useReducer and context.",
   "main": "src/index.js",
   "sideEffects": false,
