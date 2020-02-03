@@ -1,6 +1,6 @@
 {
   "name": "potent-reducer",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "A react hook based on useReducer and context.",
   "main": "src/index.js",
   "sideEffects": false,
@@ -29,6 +29,9 @@
     "url": "https://github.com/Fischerfredl/potent-reducer/issues"
   },
   "homepage": "https://github.com/Fischerfredl/potent-reducer#readme",
+  "files": [
+    "src/*"
+  ],
   "peerDependencies": {
     "react": "*"
   },
