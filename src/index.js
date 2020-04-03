@@ -10,10 +10,14 @@ export const usePotentReducer = options => {
     [reducer, onUpdate, logging]
   )
   const [state, dispatch] = useReducer(reducerFn, initialState)
-  const _thunks = useMemo(() => bindThunks(thunks, extDispatch || dispatch), [
-    thunks,
-    extDispatch
-  ])
+  const _thunks = useMemo(
+    () =>
+      bindThunks(
+        { ...thunksFromReducerMap(reducer), ...thunks },
+        extDispatch || dispatch
+      ),
+    [thunks, reducer, extDispatch]
+  )
   return [extState || state, _thunks]
 }
 
@@ -36,6 +40,10 @@ export function makeReducerFn(reducer, options = {}) {
   }
 }
 
+function thunksFromReducerMap(reducerMap) {
+  return Object.fromEntries(Object.keys(reducerMap).map(key => [key, null]))
+}
+
 /** Produces a set of actions that are bound to a specific store
  * The thunks object can contain action creators and/or thunks.
  * - Action creators: args => action
@@ -51,19 +59,17 @@ export function makeReducerFn(reducer, options = {}) {
 function bindThunks(thunks, dispatch) {
   const boundThunks = {}
   for (let name of Object.keys(thunks)) {
-    const defaultType = camelToSnakeCase(name).toUpperCase()
+    const defaultType = name
     const patchedDispatch = patchDispatch(dispatch, defaultType)
     boundThunks[name] = (...args) => {
+      if (thunks[name] === null) thunks[name] = () => ({})
       const thunk = thunks[name](...args)
-      if (typeof thunk !== 'function') patchedDispatch(thunk)
-      else thunk(patchedDispatch)
+      if (typeof thunk === 'function') thunk(patchedDispatch)
+      else patchedDispatch(thunk)
     }
   }
   return boundThunks
 }
-
-const camelToSnakeCase = str =>
-  str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
 
 /** Returns a dispatch function that fills in a default type if none is given */
 function patchDispatch(dispatch, type) {

@@ -20,20 +20,20 @@ const thunks = {
 }
 
 const reducer = {
-  ADD_ITEM: (state, { title }) => ({
+  addItem: (state, { title }) => ({
     ...state,
     nextId: state.nextId + 1,
     items: [...state.items, { title, id: state.nextId }]
   }),
-  REMOVE_ITEM: (state, { id }) => ({
+  removeItem: (state, { id }) => ({
     ...state,
     items: state.items.filter(item => item.id !== id)
   }),
-  ADD_DONE: (state, { id }) => ({
+  addDone: (state, { id }) => ({
     ...state,
     done: new Set([...state.done, id])
   }),
-  REMOVE_DONE: (state, { id }) => ({
+  removeDone: (state, { id }) => ({
     ...state,
     done: new Set([...state.done].filter(doneId => doneId !== id))
   })
