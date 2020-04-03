@@ -1,9 +1,18 @@
 {
-  "extends": ["prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
   "plugins": ["react-hooks"],
   "parser": "babel-eslint",
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
-  }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": { "react": { "version": "detect" } }
 }
