@@ -3,8 +3,8 @@ import { usePotentReducer } from '../../src'
 
 const initialState = { count: 0 }
 const reducer = {
-  INCREMENT: state => ({ count: state.count + 1 }),
-  DECREMENT: state => ({ count: state.count - 1 })
+  INCREMENT: (state) => ({ count: state.count + 1 }),
+  DECREMENT: (state) => ({ count: state.count - 1 }),
 }
 
 export const Counter = () => {

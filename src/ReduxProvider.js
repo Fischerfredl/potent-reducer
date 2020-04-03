@@ -18,8 +18,8 @@ export const ReduxProvider = ({ children, store, Provider }) => {
   const props = {
     options: {
       extState: state,
-      extDispatch: store && store.dispatch
-    }
+      extDispatch: store && store.dispatch,
+    },
   }
   return React.createElement(Provider, props, children)
 }

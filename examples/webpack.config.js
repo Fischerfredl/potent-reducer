@@ -10,14 +10,14 @@ module.exports = () => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: require.resolve('babel-loader')
-        }
-      ]
+          loader: require.resolve('babel-loader'),
+        },
+      ],
     },
     plugins: [],
     devServer: {
       stats: 'minimal',
-      contentBase: __dirname
-    }
+      contentBase: __dirname,
+    },
   }
 }

@@ -4,46 +4,46 @@ import { createStore } from '../../src'
 const initialState = {
   nextId: 0,
   items: [],
-  done: new Set()
+  done: new Set(),
 }
 
 const selectors = {
-  $done: state => state.items.filter(({ id }) => state.done.has(id)),
-  $undone: state => state.items.filter(({ id }) => !state.done.has(id))
+  $done: (state) => state.items.filter(({ id }) => state.done.has(id)),
+  $undone: (state) => state.items.filter(({ id }) => !state.done.has(id)),
 }
 
 const thunks = {
-  addItem: title => ({ title }),
-  removeItem: id => ({ id }),
-  addDone: id => ({ id }),
-  removeDone: id => ({ id })
+  addItem: (title) => ({ title }),
+  removeItem: (id) => ({ id }),
+  addDone: (id) => ({ id }),
+  removeDone: (id) => ({ id }),
 }
 
 const reducer = {
   addItem: (state, { title }) => ({
     ...state,
     nextId: state.nextId + 1,
-    items: [...state.items, { title, id: state.nextId }]
+    items: [...state.items, { title, id: state.nextId }],
   }),
   removeItem: (state, { id }) => ({
     ...state,
-    items: state.items.filter(item => item.id !== id)
+    items: state.items.filter((item) => item.id !== id),
   }),
   addDone: (state, { id }) => ({
     ...state,
-    done: new Set([...state.done, id])
+    done: new Set([...state.done, id]),
   }),
   removeDone: (state, { id }) => ({
     ...state,
-    done: new Set([...state.done].filter(doneId => doneId !== id))
-  })
+    done: new Set([...state.done].filter((doneId) => doneId !== id)),
+  }),
 }
 
 const { Provider, useSelector, useDispatch } = createStore({
   initialState,
   reducer,
   thunks,
-  logging: true
+  logging: true,
 })
 
 export const TodoExample = () => {
@@ -61,14 +61,14 @@ export const TodoExample = () => {
 const AddItem = () => {
   const [text, setText] = useState('')
   const { addItem } = useDispatch()
-  const handleSubmit = evt => {
+  const handleSubmit = (evt) => {
     evt.preventDefault()
     addItem(text)
     setText('')
   }
   return (
     <form onSubmit={handleSubmit}>
-      <input value={text} onChange={evt => setText(evt.target.value)} />
+      <input value={text} onChange={(evt) => setText(evt.target.value)} />
       <button type="submit">Add</button>
     </form>
   )
@@ -111,7 +111,9 @@ const DoneList = () => {
 }
 
 const TodoItem = ({ id }) => {
-  const { title } = useSelector(state => state.items.find(el => el.id === id))
+  const { title } = useSelector((state) =>
+    state.items.find((el) => el.id === id)
+  )
   const { removeItem } = useDispatch()
   return (
     <>

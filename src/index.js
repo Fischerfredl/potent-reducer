@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useReducer } from 'react'
 
 /** Takes options that fully define a store and turns it into a more potent reducer */
-export const usePotentReducer = options => {
+export const usePotentReducer = (options) => {
   const { reducer = {}, thunks = {}, initialState } = options
   const { extState, extDispatch } = options
   const { onUpdate, logging } = options
@@ -28,7 +28,7 @@ export const usePotentReducer = options => {
  */
 export function makeReducerFn(reducer, options = {}) {
   const { onUpdate, logging } = options
-  const noop = state => state
+  const noop = (state) => state
   return (prevState, action) => {
     const { type } = action
     const reducerBranch = reducer[type] || reducer['default'] || noop
@@ -41,7 +41,7 @@ export function makeReducerFn(reducer, options = {}) {
 }
 
 function thunksFromReducerMap(reducerMap) {
-  return Object.fromEntries(Object.keys(reducerMap).map(key => [key, null]))
+  return Object.fromEntries(Object.keys(reducerMap).map((key) => [key, null]))
 }
 
 /** Produces a set of actions that are bound to a specific store
@@ -73,7 +73,7 @@ function bindThunks(thunks, dispatch) {
 
 /** Returns a dispatch function that fills in a default type if none is given */
 function patchDispatch(dispatch, type) {
-  return action => {
+  return (action) => {
     dispatch({ type, ...action })
   }
 }
@@ -81,7 +81,7 @@ function patchDispatch(dispatch, type) {
 /** A ReducerStore Factory that uses React.context
  * Used to make a Store accessible through multiple components
  */
-export const createStore = initialOptions => {
+export const createStore = (initialOptions) => {
   const context = createContext(null)
   const { Consumer } = context
   const Provider = ({ children, options }) => {
@@ -89,7 +89,7 @@ export const createStore = initialOptions => {
     return React.createElement(context.Provider, { value: store }, children)
   }
   const useStore = () => useContext(context)
-  const useSelector = selector => {
+  const useSelector = (selector) => {
     const [state] = useContext(context)
     if (typeof selector === 'undefined') return state
     const val = selector(state)
@@ -112,7 +112,7 @@ To turn these messages off use {"warnOnUndefinedSelect": false} in options`)
 
 /** Log action inspired by redux-logger */
 const logger = ({ prevState, action, nextState }) => {
-  const css = color => `color: ${color}; font-weight: bold;`
+  const css = (color) => `color: ${color}; font-weight: bold;`
   console.groupCollapsed(`%c action`, 'color: #9E9E9E', action.type)
   console.log('%c prevState ', css('#9E9E9E'), prevState)
   console.log('%c action    ', css('#03A9F4'), action)

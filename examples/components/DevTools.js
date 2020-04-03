@@ -4,13 +4,13 @@ import { ReduxProvider } from '../../src/ReduxProvider'
 
 const initialState = { count: 0 }
 const reducer = {
-  increment: state => ({ count: state.count + 1 }),
-  decrement: state => ({ count: state.count - 1 })
+  increment: (state) => ({ count: state.count + 1 }),
+  decrement: (state) => ({ count: state.count - 1 }),
 }
 
 const { useDispatch, useSelector, Provider } = createStore({
   initialState,
-  reducer
+  reducer,
 })
 
 const reducerFn = makeReducerFn(reducer)
