@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports = (env, argv) => {
+module.exports = () => {
   return {
     entry: path.resolve(__dirname, 'index.js'),
     devtool: 'source-map',

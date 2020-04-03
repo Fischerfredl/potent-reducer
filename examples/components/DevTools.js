@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { createStore, makeReducerFn } from '../../src'
 import { ReduxProvider } from '../../src/ReduxProvider'
 
@@ -10,7 +10,6 @@ const reducer = {
 
 const { useDispatch, useSelector, Provider } = createStore({
   initialState,
-  thunks,
   reducer
 })
 
