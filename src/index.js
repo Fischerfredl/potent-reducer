@@ -21,17 +21,20 @@ export const usePotentReducer = (options) => {
   return [extState || state, _thunks]
 }
 
-/** Turn a reducer definition object to a function
- * @param {Object} reducer: Object definition of a reducer: {<type>: (state, payload) => <newState>}
+/** Turn a reducerMap to a function
+ * A reducerMap is a Javascript object that defines the reducers branches:
+ *   - "<action.type>": (state, action) => <newState>
+ *   - special key "default": the default branch to take
+ * @param {Object} reducerMap: Object definition of a reducer: {<type>: (state, payload) => <newState>}
  * @param {Object} options
  * @returns {Function}: Proper reducer
  */
-export function makeReducerFn(reducer, options = {}) {
+export function makeReducerFn(reducerMap, options = {}) {
   const { onUpdate, logging } = options
   const noop = (state) => state
   return (prevState, action) => {
     const { type } = action
-    const reducerBranch = reducer[type] || reducer['default'] || noop
+    const reducerBranch = reducerMap[type] || reducerMap['default'] || noop
     const nextState = reducerBranch(prevState, action)
     const stats = { prevState, nextState, action }
     typeof onUpdate === 'function' && onUpdate(stats)
@@ -51,7 +54,6 @@ function thunksFromReducerMap(reducerMap) {
  * - Thunks args => dispatch => dispatch(action)
  *   are called with dispatch as first argument.
  * The dispatch function will be patched to insert an action type if not given.
- * This action type will be the SNAKE_CASE'd action name
  * @param {Object} thunks
  * @param {Function} dispatch
  * @returns {object}
@@ -73,9 +75,7 @@ function bindThunks(thunks, dispatch) {
 
 /** Returns a dispatch function that fills in a default type if none is given */
 function patchDispatch(dispatch, type) {
-  return (action) => {
-    dispatch({ type, ...action })
-  }
+  return (action) => dispatch({ type, ...action })
 }
 
 /** A ReducerStore Factory that uses React.context
